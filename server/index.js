@@ -1,6 +1,8 @@
+import "dotenv/config";
 import express from "express";
 import cors from "cors";
-import "dotenv/config";
+
+import agentRoutes from "./routes/agent.routes.js";
 
 const app = express();
 
@@ -20,19 +22,10 @@ app.get("/api/health", (req, res) => {
   });
 });
 
-app.post("/api/agent", (req, res) => {
-  const { message } = req.body;
-
-  console.log("User request:", message);
-
-  res.json({
-    success: true,
-    message: "Agent received your request 🚀",
-    request: message,
-  });
-});
+app.use("/api/agent", agentRoutes);
 
 const PORT = process.env.PORT || 5000;
+
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
 });

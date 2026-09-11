@@ -24,7 +24,7 @@ function App() {
 
       const data = await res.json();
 
-      setResponse(data.message);
+      setResponse(data.result);
     } catch (error) {
       console.error(error);
       setResponse("Something went wrong.");
